@@ -1,0 +1,48 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: ccx-minio-pv
+  labels:
+    type: local
+spec:
+  storageClassName: standard
+  persistentVolumeReclaimPolicy: Recycle
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/storage/ccx-minio"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: ccx-operator-pv
+  labels:
+    type: local
+spec:
+  storageClassName: standard
+  persistentVolumeReclaimPolicy: Recycle
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/storage/ccx-operator"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: minio-pv-volume
+  labels:
+    type: local
+  namespace: minio
+spec:
+  storageClassName: standard
+  persistentVolumeReclaimPolicy: Recycle
+  capacity:
+    storage: 6Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/storage/minio"

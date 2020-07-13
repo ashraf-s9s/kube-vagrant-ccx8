@@ -1,0 +1,39 @@
+apiVersion: mydbservice.net/v1
+kind: dbcluster
+metadata:
+  name: sometest
+spec:
+  type: mariadb
+  mariadb:
+    db_password: pass
+    db_username: myuser
+    db_version: 10.4
+    db_hostname:
+  infrastructure:
+    type: aws
+    region: us-east-2
+    server:
+      size: t2.large
+      count: 3
+    secrets:
+      aws_access_key: 
+      aws_secret_key: 
+      minio_access_key: minioadmin
+      minio_secret_key: minioadmin
+  cluster:
+    name: seppo
+    type: galera
+    monitoring: False
+    proxysql: False
+  cmon:
+    cmon_pod_name: cc-pod
+    cmon_mysql_name: mysql-server-cmon
+    cmon_mysql_port: 3306
+    clustercontrol_enabled: False
+    mysql_image_name:
+    mysql_connect_password: pass
+    mysql_storage_name: cmon-mysql-storage
+    mysql_storage_size: 2G
+    mysql_storage_class: standard
+    rpc_username:
+    rpc_password:
